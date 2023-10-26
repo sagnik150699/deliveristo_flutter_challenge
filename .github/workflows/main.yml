@@ -1,4 +1,4 @@
-name: Flutter CI/CD
+name: Flutter CI
 
 on:
   push:
@@ -28,6 +28,13 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
+      - name: Run Unit and Widget Tests
+        run: flutter test
+
+      # Uncomment the following lines if you have integration tests
+      # - name: Run Integration Tests
+      #   run: flutter drive --target=test_driver/integration_test.dart
+
       - name: Build APK
         run: flutter build apk --release
 
@@ -45,6 +52,8 @@ jobs:
         with:
           name: web-app
           path: build/web/
+      - name: Flutter Test
+        run: flutter test
 
   build_windows:
     name: Build Windows
@@ -72,26 +81,3 @@ jobs:
         with:
           name: windows-app
           path: build/windows/runner/Release/
-
-
-    #  build_ios:
-    #    runs-on: macOS-latest
-    #    steps:
-    #      - name: Checkout Repository
-    #        uses: actions/checkout@v2
-    #
-    #      - name: Setup Flutter
-    #        uses: subosito/flutter-action@v2
-    #        with:
-    #          flutter-version: '3.13.6'
-    #      - name: Install CocoaPods
-    #        run: |
-    #          sudo gem install cocoapods
-    #          cd ios
-    #          pod install
-    #
-    #      - name: Install Dependencies
-    #        run: flutter pub get
-    #
-    #      - name: Build iOS
-    #        run: flutter build ios --release --no-codesign

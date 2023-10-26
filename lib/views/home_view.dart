@@ -14,7 +14,7 @@ class HomeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModelProvider = ref.watch(viewModel);
     if (viewModelProvider.breedsList.isEmpty) {
-      viewModelProvider.fetchBreedsList();
+      viewModelProvider.fetchBreeds();
       return const SpinKitWaveSpinner(
         color: Colors.greenAccent,
         waveColor: Color(0xff9DD8A9),

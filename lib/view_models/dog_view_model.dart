@@ -12,15 +12,29 @@ class ViewModel extends ChangeNotifier {
   Logger logger = Logger();
   List<BreedsListModel> breedsList = [];
 
-  Future<void> fetchBreedsList() async {
-    final response = await dio.get('https://dog.ceo/api/breeds/list/all');
-    if (response.statusCode == 200) {
-      breedsList = (response.data['message'] as Map<String, dynamic>)
-          .entries
-          .map((entry) => BreedsListModel.fromJson(entry))
-          .toList();
-      notifyListeners();
-      logger.d(breedsList[0].breed[1]);
-    }
+  //All Breeds
+  Future<void> fetchBreeds() async {
+    final response = await Dio().get('https://dog.ceo/api/breeds/list/all');
+    final data = response.data['message'];
+    breedsList.clear();
+    data.forEach((name, subBreeds) {
+      breedsList.add(BreedsListModel(name: name, subBreeds: List<String>.from(subBreeds)));
+    });
+    notifyListeners();
+    logger.d(breedsList.length);
+  }
+// Random Image by Breed Screen
+
+  String? randomImageUrl;
+  String? selectedBreed;
+
+  void setSelectedBreed(String breed) {
+    selectedBreed = breed;
+    notifyListeners();
+  }
+  Future<void> fetchRandomImageByBreed(String breed) async {
+    final response = await Dio().get('https://dog.ceo/api/breed/$breed/images/random');
+    randomImageUrl = response.data['message'];
+    notifyListeners();
   }
 }
