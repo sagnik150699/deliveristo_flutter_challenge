@@ -23,7 +23,7 @@ class ImageListByBreedView extends ConsumerWidget {
           },
         ),
         title:
-            const LuckiestGuyFont(text: "Image List by breed", fontSize: 25.0),
+            const LuckiestGuyFont(text: "List by breed", fontSize: 25.0),
       ),
       body: Column(
         children: [

@@ -5,12 +5,12 @@ void main() {
   group('BreedsListModel', () {
     test('fromJson returns a valid instance', () {
       final breedName = 'Labrador';
-      final subBreeds = ['Yellow', 'Chocolate', 'Black'];
+      final subBreeds = ['Australian', 'Spaniard', 'Ghonta'];
 
       final breed = BreedsListModel.fromJson(breedName, subBreeds);
 
       expect(breed.breed, 'Labrador');
-      expect(breed.subBreeds, ['Yellow', 'Chocolate', 'Black']);
+      expect(breed.subBreeds, ['Australian', 'Spaniard', 'Ghonta']);
     });
 
     test('fromJson handles empty subBreeds', () {

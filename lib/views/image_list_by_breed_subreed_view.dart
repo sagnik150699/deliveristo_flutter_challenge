@@ -21,7 +21,7 @@ class ImagesListByBreedAndSubBreed extends ConsumerWidget {
           },
         ),
         title: const LuckiestGuyFont(
-            text: "Images List by Breed & Sub-Breed", fontSize: 25.0),
+            text: "List by Breed & Sub-Breed", fontSize: 25.0),
       ),
       body: Column(
         children: [
