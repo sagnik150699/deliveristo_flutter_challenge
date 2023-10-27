@@ -46,13 +46,15 @@ The project includes unit tests to ensure the reliability and performance of the
 The project includes CI/CD configuration for automated building, testing, and artifact generation for Android, Web, and Windows platforms. This ensures that every change in the codebase is automatically tested and verified, maintaining the overall quality of the application.
 
 ## Screenshots
-![Screenshot_1698434353.png](app_screenshots%2FScreenshot_1698434353.png)![Screenshot_1698434359.png](app_screenshots%2FScreenshot_1698434359.png)
 
-![Screenshot_1698434365.png](app_screenshots%2FScreenshot_1698434365.png)![Screenshot_1698434479.png](app_screenshots%2FScreenshot_1698434479.png)
+<img src="app_screenshots/Screenshot_1698434353.png" alt="Screenshot" width="300"/>
+<img src="app_screenshots/Screenshot_1698434359.png" alt="Screenshot" width="300"/>
+<img src="app_screenshots/Screenshot_1698434365.png" alt="Screenshot" width="300"/>
+<img src="app_screenshots/Screenshot_1698434479.png" alt="Screenshot" width="300"/>
+<img src="app_screenshots/Screenshot_1698434492.png" alt="Screenshot" width="300"/>
+<img src="app_screenshots/Screenshot_1698434501.png" alt="Screenshot" width="300"/>
+<img src="app_screenshots/Screenshot_1698434508.png" alt="Screenshot" width="300"/>
 
-![Screenshot_1698434492.png](app_screenshots%2FScreenshot_1698434492.png)![Screenshot_1698434501.png](app_screenshots%2FScreenshot_1698434501.png)
-
-![Screenshot_1698434508.png](app_screenshots%2FScreenshot_1698434508.png)
 
 ## How to Run
 
