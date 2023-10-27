@@ -1,13 +1,13 @@
 class BreedsListModel {
-  final String name;
+  final String breed;
   final List<String> subBreeds;
 
-  BreedsListModel({required this.name, required this.subBreeds});
+  BreedsListModel({required this.breed, required this.subBreeds});
 
-  factory BreedsListModel.fromJson(Map<String, dynamic> json) {
+  factory BreedsListModel.fromJson(String breed, List<dynamic> subBreeds) {
     return BreedsListModel(
-      name: json['name'],
-      subBreeds: List<String>.from(json['subBreeds']),
+      breed: breed,
+      subBreeds: List<String>.from(subBreeds),
     );
   }
 }

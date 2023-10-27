@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../components/custom_text_widgets.dart';
-import '../view_models/dog_view_model.dart';
+import '../components/image_widget.dart';
+import '../view_models/view_model.dart';
 
 class RandomImageByBreed extends ConsumerWidget {
   const RandomImageByBreed({super.key});
@@ -11,23 +14,28 @@ class RandomImageByBreed extends ConsumerWidget {
     final viewModelProvider = ref.watch(viewModel);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            viewModelProvider.clearSelectedBreedData();
+            Navigator.pop(context);
+          },
+        ),
         title: const LuckiestGuyFont(
             text: "RANDOM IMAGE BY BREED", fontSize: 25.0),
       ),
-     body: Center(
-       child: Column(
-
+      body: Center(
+        child: Column(
           children: [
-
+            const SizedBox(height: 30.0),
             DropdownButton<String>(
-              dropdownColor: Colors.tealAccent,
               value: viewModelProvider.selectedBreed,
-              hint: Text('Select Breed'),
+              hint: LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
               items: viewModelProvider.breedsList.map((breed) {
                 return DropdownMenuItem<String>(
-                  value: breed.name,
-                  child: Text(breed.name),
+                  value: breed.breed,
+                  child: LuckiestGuyFont(text: breed.breed, fontSize: 15.0),
                 );
               }).toList(),
               onChanged: (value) {
@@ -37,12 +45,16 @@ class RandomImageByBreed extends ConsumerWidget {
                 }
               },
             ),
+            const SizedBox(height: 20.0),
             // Display random image
             if (viewModelProvider.randomImageUrl != null)
-              Image.network(viewModelProvider.randomImageUrl!),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 15.0),
+                child: ImageWidget(url: viewModelProvider.randomImageUrl!),
+              ),
           ],
         ),
-     ),
+      ),
     );
   }
 }
