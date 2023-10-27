@@ -7,22 +7,24 @@ import '../models/breeds_list_model.dart';
 final viewModel =
     ChangeNotifierProvider.autoDispose<ViewModel>((ref) => ViewModel());
 Logger logger = Logger();
+
 class ViewModel extends ChangeNotifier {
   final dio = Dio();
-
 
   List<BreedsListModel> breedsList = [];
   String? randomImageUrl;
   String? selectedBreed;
   List<String> breedImages = [];
   String? selectedSubBreed;
-
+  List<String> breedAndSubBreedImages = [];
 
   void clearSelectedBreedData() {
     selectedBreed = null;
-    selectedSubBreed=null;
-    randomImageUrl=null;
+    selectedSubBreed = null;
+    randomImageUrl = null;
     breedImages.clear();
+
+    breedAndSubBreedImages.clear();
     notifyListeners();
   }
 
@@ -34,13 +36,10 @@ class ViewModel extends ChangeNotifier {
     breedsList.clear();
     data.forEach((breed, subBreeds) {
       breedsList.add(BreedsListModel.fromJson(breed, subBreeds));
- //     logger.d('Breed: $breed, Sub-Breeds: $subBreeds');
+      //     logger.d('Breed: $breed, Sub-Breeds: $subBreeds');
     });
     notifyListeners();
-
-
   }
-
 
 // Random Image by Breed Screen
 
@@ -67,15 +66,26 @@ class ViewModel extends ChangeNotifier {
 
   //Random image by breed and sub breed
 
-
   void setSelectedSubBreed(String subBreed) {
     selectedSubBreed = subBreed;
     notifyListeners();
   }
 
-  Future<void> fetchRandomImageByBreedAndSubBreed(String breed, String subBreed) async {
-    final response = await Dio().get('https://dog.ceo/api/breed/$breed/$subBreed/images/random');
+  Future<void> fetchRandomImageByBreedAndSubBreed(
+      String breed, String subBreed) async {
+    final response = await Dio()
+        .get('https://dog.ceo/api/breed/$breed/$subBreed/images/random');
     randomImageUrl = response.data['message'];
+    notifyListeners();
+  }
+
+  //Images list by breed and sub breed
+
+  Future<void> fetchImagesByBreedAndSubBreed(
+      String breed, String subBreed) async {
+    final response =
+        await Dio().get('https://dog.ceo/api/breed/$breed/$subBreed/images');
+    breedAndSubBreedImages = List<String>.from(response.data['message']);
     notifyListeners();
   }
 }

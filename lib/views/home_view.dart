@@ -1,6 +1,7 @@
 import 'package:deliveristo_flutter_challenge/components/custom_text_widgets.dart';
 import 'package:deliveristo_flutter_challenge/components/home_button_navigation.dart';
 import 'package:deliveristo_flutter_challenge/view_models/view_model.dart';
+import 'package:deliveristo_flutter_challenge/views/image_list_by_breed_subreed_view.dart';
 import 'package:deliveristo_flutter_challenge/views/random_image_by_breed_subreed_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,7 +47,7 @@ class HomeView extends ConsumerWidget {
               ),
               HomeButtonNavigation(
                 buttonText: "Images List by Breed & Sub-Breed",
-                navigator: RandomImageByBreed(),
+                navigator: ImagesListByBreedAndSubBreed(),
               ),
             ],
           ),

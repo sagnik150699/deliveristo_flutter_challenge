@@ -1,12 +1,12 @@
+import 'package:deliveristo_flutter_challenge/components/image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/custom_text_widgets.dart';
-import '../components/image_widget.dart';
 import '../view_models/view_model.dart';
 
-class RandomImageBreedSubreed extends ConsumerWidget {
-  const RandomImageBreedSubreed({super.key});
+class ImagesListByBreedAndSubBreed extends ConsumerWidget {
+  const ImagesListByBreedAndSubBreed({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,7 +21,7 @@ class RandomImageBreedSubreed extends ConsumerWidget {
           },
         ),
         title: const LuckiestGuyFont(
-            text: "random image by breed and sub breed", fontSize: 20.0),
+            text: "Images List by Breed & Sub-Breed", fontSize: 25.0),
       ),
       body: Column(
         children: [
@@ -29,11 +29,11 @@ class RandomImageBreedSubreed extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-
               // Dropdown to select breed
               DropdownButton<String>(
                 value: viewModelProvider.selectedBreed,
-                hint:  const LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
+                hint:
+                    const LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
                 items: viewModelProvider.breedsList.map((breed) {
                   return DropdownMenuItem<String>(
                     value: breed.breed,
@@ -50,13 +50,9 @@ class RandomImageBreedSubreed extends ConsumerWidget {
               // Dropdown to select sub-breed
               DropdownButton<String>(
                 value: viewModelProvider.selectedSubBreed,
-                hint:  const LuckiestGuyFont(text: 'Select Sub-Breed', fontSize: 15.0),
-                items: viewModelProvider.selectedBreed != null &&
-                        viewModelProvider.breedsList
-                            .firstWhere((breed) =>
-                                breed.breed == viewModelProvider.selectedBreed)
-                            .subBreeds
-                            .isNotEmpty
+                hint: const LuckiestGuyFont(
+                    text: 'Select Sub Breed', fontSize: 15.0),
+                items: viewModelProvider.selectedBreed != null
                     ? viewModelProvider.breedsList
                         .firstWhere((breed) =>
                             breed.breed == viewModelProvider.selectedBreed)
@@ -64,13 +60,14 @@ class RandomImageBreedSubreed extends ConsumerWidget {
                         .map((subBreed) {
                         return DropdownMenuItem<String>(
                           value: subBreed,
-                          child: LuckiestGuyFont(text: subBreed, fontSize: 15.0)
+                          child: LuckiestGuyFont(text: subBreed,fontSize: 15.0),
                         );
                       }).toList()
                     : [
-                     const   DropdownMenuItem<String>(
-                          value: null,
-                          child: LuckiestGuyFont(text: 'No Sub-Breed', fontSize: 15.0),
+                        DropdownMenuItem<String>(
+                          value: 'No Sub-Breeds',
+                          child: LuckiestGuyFont(
+                              text: 'No Sub Breed', fontSize: 15.0),
                         ),
                       ],
                 onChanged: viewModelProvider.selectedBreed != null &&
@@ -82,7 +79,7 @@ class RandomImageBreedSubreed extends ConsumerWidget {
                     ? (value) {
                         if (value != null) {
                           viewModelProvider.setSelectedSubBreed(value);
-                          viewModelProvider.fetchRandomImageByBreedAndSubBreed(
+                          viewModelProvider.fetchImagesByBreedAndSubBreed(
                               viewModelProvider.selectedBreed!, value);
                         }
                       }
@@ -90,10 +87,20 @@ class RandomImageBreedSubreed extends ConsumerWidget {
               ),
             ],
           ),
-          // Display random image
           const SizedBox(height: 20.0),
-          if (viewModelProvider.randomImageUrl != null)
-            ImageWidget(url: viewModelProvider.randomImageUrl!),
+          // Display images list
+          Expanded(
+            child: ListView.builder(
+              itemCount: viewModelProvider.breedAndSubBreedImages.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15.0),
+                  child: ImageWidget(
+                      url: viewModelProvider.breedAndSubBreedImages[index]),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
