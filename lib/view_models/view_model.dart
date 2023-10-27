@@ -66,25 +66,35 @@ class ViewModel extends ChangeNotifier {
 
   //Random image by breed and sub breed
 
-  void setSelectedSubBreed(String subBreed) {
+  void setSelectedSubBreed(final subBreed) {
     selectedSubBreed = subBreed;
     notifyListeners();
   }
 
-  Future<void> fetchRandomImageByBreedAndSubBreed(
-      String breed, String subBreed) async {
-    final response = await Dio()
-        .get('https://dog.ceo/api/breed/$breed/$subBreed/images/random');
+  Future<void> fetchRandomImageByBreedAndSubBreed(String breed,
+      [String? subBreed]) async {
+    String url;
+    if (subBreed != null && subBreed.isNotEmpty) {
+      url = 'https://dog.ceo/api/breed/$breed/$subBreed/images/random';
+    } else {
+      url = 'https://dog.ceo/api/breed/$breed/images/random';
+    }
+    final response = await Dio().get(url);
     randomImageUrl = response.data['message'];
     notifyListeners();
   }
 
   //Images list by breed and sub breed
 
-  Future<void> fetchImagesByBreedAndSubBreed(
-      String breed, String subBreed) async {
-    final response =
-        await Dio().get('https://dog.ceo/api/breed/$breed/$subBreed/images');
+  Future<void> fetchImagesByBreedAndSubBreed(String breed,
+      [String? subBreed]) async {
+    String url;
+    if (subBreed != null && subBreed.isNotEmpty) {
+      url = 'https://dog.ceo/api/breed/$breed/$subBreed/images';
+    } else {
+      url = 'https://dog.ceo/api/breed/$breed/images';
+    }
+    final response = await Dio().get(url);
     breedAndSubBreedImages = List<String>.from(response.data['message']);
     notifyListeners();
   }

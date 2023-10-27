@@ -43,6 +43,10 @@ class ImagesListByBreedAndSubBreed extends ConsumerWidget {
                 onChanged: (value) {
                   if (value != null) {
                     viewModelProvider.setSelectedBreed(value);
+                    viewModelProvider.setSelectedSubBreed(
+                        null); // Reset selected sub-breed to prevent app crash
+                    viewModelProvider.fetchImagesByBreedAndSubBreed(
+                        value); // Fetch images for breed
                   }
                 },
               ),
@@ -51,7 +55,7 @@ class ImagesListByBreedAndSubBreed extends ConsumerWidget {
               DropdownButton<String>(
                 value: viewModelProvider.selectedSubBreed,
                 hint: const LuckiestGuyFont(
-                    text: 'Select Sub Breed', fontSize: 15.0),
+                    text: 'Select Sub-Breed', fontSize: 15.0),
                 items: viewModelProvider.selectedBreed != null
                     ? viewModelProvider.breedsList
                         .firstWhere((breed) =>
@@ -60,14 +64,15 @@ class ImagesListByBreedAndSubBreed extends ConsumerWidget {
                         .map((subBreed) {
                         return DropdownMenuItem<String>(
                           value: subBreed,
-                          child: LuckiestGuyFont(text: subBreed,fontSize: 15.0),
+                          child:
+                              LuckiestGuyFont(text: subBreed, fontSize: 15.0),
                         );
                       }).toList()
                     : [
                         DropdownMenuItem<String>(
                           value: 'No Sub-Breeds',
                           child: LuckiestGuyFont(
-                              text: 'No Sub Breed', fontSize: 15.0),
+                              text: 'No Sub-Breeds', fontSize: 15.0),
                         ),
                       ],
                 onChanged: viewModelProvider.selectedBreed != null &&
@@ -80,7 +85,8 @@ class ImagesListByBreedAndSubBreed extends ConsumerWidget {
                         if (value != null) {
                           viewModelProvider.setSelectedSubBreed(value);
                           viewModelProvider.fetchImagesByBreedAndSubBreed(
-                              viewModelProvider.selectedBreed!, value);
+                              viewModelProvider.selectedBreed!,
+                              value); // Fetch images for breed and sub-breed
                         }
                       }
                     : null,

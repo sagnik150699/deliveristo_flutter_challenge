@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
+    return SafeArea(
       child: MaterialApp(
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
             foregroundColor: Colors.black,
             iconTheme: IconThemeData(size: 30),
           ),
-          scaffoldBackgroundColor:  Colors.white,
+          scaffoldBackgroundColor: Colors.white,
         ),
         debugShowCheckedModeBanner: false,
         home: const HomeView(),

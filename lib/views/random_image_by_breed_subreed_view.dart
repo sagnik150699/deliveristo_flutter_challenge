@@ -29,11 +29,11 @@ class RandomImageBreedSubreed extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-
               // Dropdown to select breed
               DropdownButton<String>(
                 value: viewModelProvider.selectedBreed,
-                hint:  const LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
+                hint:
+                    const LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
                 items: viewModelProvider.breedsList.map((breed) {
                   return DropdownMenuItem<String>(
                     value: breed.breed,
@@ -43,6 +43,10 @@ class RandomImageBreedSubreed extends ConsumerWidget {
                 onChanged: (value) {
                   if (value != null) {
                     viewModelProvider.setSelectedBreed(value);
+                    viewModelProvider
+                        .setSelectedSubBreed(null); // Reset selected sub-breed
+                    viewModelProvider.fetchRandomImageByBreedAndSubBreed(
+                        value); // Fetch random image for breed
                   }
                 },
               ),
@@ -50,13 +54,9 @@ class RandomImageBreedSubreed extends ConsumerWidget {
               // Dropdown to select sub-breed
               DropdownButton<String>(
                 value: viewModelProvider.selectedSubBreed,
-                hint:  const LuckiestGuyFont(text: 'Select Sub-Breed', fontSize: 15.0),
-                items: viewModelProvider.selectedBreed != null &&
-                        viewModelProvider.breedsList
-                            .firstWhere((breed) =>
-                                breed.breed == viewModelProvider.selectedBreed)
-                            .subBreeds
-                            .isNotEmpty
+                hint: const LuckiestGuyFont(
+                    text: 'Select Sub-Breed', fontSize: 15.0),
+                items: viewModelProvider.selectedBreed != null
                     ? viewModelProvider.breedsList
                         .firstWhere((breed) =>
                             breed.breed == viewModelProvider.selectedBreed)
@@ -64,13 +64,15 @@ class RandomImageBreedSubreed extends ConsumerWidget {
                         .map((subBreed) {
                         return DropdownMenuItem<String>(
                           value: subBreed,
-                          child: LuckiestGuyFont(text: subBreed, fontSize: 15.0)
+                          child:
+                              LuckiestGuyFont(text: subBreed, fontSize: 15.0),
                         );
                       }).toList()
                     : [
-                     const   DropdownMenuItem<String>(
-                          value: null,
-                          child: LuckiestGuyFont(text: 'No Sub-Breed', fontSize: 15.0),
+                        DropdownMenuItem<String>(
+                          value: 'No Sub-Breeds',
+                          child: LuckiestGuyFont(
+                              text: 'No Sub-Breeds', fontSize: 15.0),
                         ),
                       ],
                 onChanged: viewModelProvider.selectedBreed != null &&
@@ -83,15 +85,16 @@ class RandomImageBreedSubreed extends ConsumerWidget {
                         if (value != null) {
                           viewModelProvider.setSelectedSubBreed(value);
                           viewModelProvider.fetchRandomImageByBreedAndSubBreed(
-                              viewModelProvider.selectedBreed!, value);
+                              viewModelProvider.selectedBreed!,
+                              value); // Fetch random image for breed and sub-breed
                         }
                       }
                     : null,
               ),
             ],
           ),
-          // Display random image
           const SizedBox(height: 20.0),
+          // Display random image
           if (viewModelProvider.randomImageUrl != null)
             ImageWidget(url: viewModelProvider.randomImageUrl!),
         ],

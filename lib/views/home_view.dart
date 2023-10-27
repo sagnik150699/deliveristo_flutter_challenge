@@ -23,8 +23,7 @@ class HomeView extends ConsumerWidget {
         waveColor: Color(0xff9DD8A9),
         size: 150.0,
       );
-    }
-    else {
+    } else {
       return const Scaffold(
         body: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Column(
@@ -36,7 +35,6 @@ class HomeView extends ConsumerWidget {
                 buttonText: "RANDOM IMAGE BY BREED",
                 navigator: RandomImageByBreed(),
               ),
-
               HomeButtonNavigation(
                 buttonText: "Images List by Breed",
                 navigator: ImageListByBreedView(),
@@ -54,6 +52,5 @@ class HomeView extends ConsumerWidget {
         ]),
       );
     }
-
   }
 }

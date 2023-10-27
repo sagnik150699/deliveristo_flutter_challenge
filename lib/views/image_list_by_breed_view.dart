@@ -52,7 +52,7 @@ class ImageListByBreedView extends ConsumerWidget {
               itemCount: viewModelProvider.breedImages.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(vertical: 15.0),
+                  padding: const EdgeInsets.symmetric(vertical: 15.0),
                   child: ImageWidget(url: viewModelProvider.breedImages[index]),
                 );
               },

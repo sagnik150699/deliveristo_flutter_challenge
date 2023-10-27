@@ -22,8 +22,8 @@ class ImageWidget extends StatelessWidget {
               children: [
                 Image.network(
                   url,
-                  height: 250.0 ,
-                  width: 300.0  ,
+                  height: 250.0,
+                  width: 300.0,
                   fit: BoxFit.fill,
                 ),
               ],
