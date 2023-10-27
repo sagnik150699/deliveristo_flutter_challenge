@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/custom_text_widgets.dart';
+import '../components/image_widget.dart';
 import '../view_models/view_model.dart';
 
 class RandomImageBreedSubreed extends ConsumerWidget {
@@ -12,7 +13,6 @@ class RandomImageBreedSubreed extends ConsumerWidget {
     final viewModelProvider = ref.watch(viewModel);
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -21,60 +21,76 @@ class RandomImageBreedSubreed extends ConsumerWidget {
           },
         ),
         title: const LuckiestGuyFont(
-            text: "random image by breed and sub breed", fontSize: 25.0),
+            text: "random image by breed and sub breed", fontSize: 20.0),
       ),
       body: Column(
         children: [
-          // Dropdown to select breed
-          DropdownButton<String>(
-            value: viewModelProvider.selectedBreed,
-            hint: Text('Select Breed'),
-            items: viewModelProvider.breedsList.map((breed) {
-              return DropdownMenuItem<String>(
-                value: breed.breed,
-                child: Text(breed.breed),
-              );
-            }).toList(),
-            onChanged: (value) {
-              if (value != null) {
-                viewModelProvider.setSelectedBreed(value);
-                viewModelProvider
-                    .clearSelectedBreedData(); // Clear previous data
-              }
-            },
-          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // Dropdown to select breed
+              DropdownButton<String>(
+                value: viewModelProvider.selectedBreed,
+                hint:  const LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
+                items: viewModelProvider.breedsList.map((breed) {
+                  return DropdownMenuItem<String>(
+                    value: breed.breed,
+                    child: LuckiestGuyFont(text: breed.breed, fontSize: 15.0),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  if (value != null) {
+                    viewModelProvider.setSelectedBreed(value);
+                  }
+                },
+              ),
 
-          // Dropdown to select sub-breed (visible only if sub-breeds are available)
-          if (viewModelProvider.selectedBreed != null &&
-              viewModelProvider.breedsList
-                  .firstWhere(
-                      (breed) => breed.breed == viewModelProvider.selectedBreed)
-                  .subBreeds
-                  .isNotEmpty)
-            DropdownButton<String>(
-              value: viewModelProvider.selectedSubBreed,
-              hint: Text('Select Sub-Breed'),
-              items: viewModelProvider.breedsList
-                  .firstWhere(
-                      (breed) => breed.breed == viewModelProvider.selectedBreed)
-                  .subBreeds
-                  .map((subBreed) {
-                return DropdownMenuItem<String>(
-                  value: subBreed,
-                  child: Text(subBreed),
-                );
-              }).toList(),
-              onChanged: (value) {
-                if (value != null) {
-                  viewModelProvider.setSelectedSubBreed(value);
-                  viewModelProvider.fetchRandomImageByBreedAndSubBreed(
-                      viewModelProvider.selectedBreed!, value);
-                }
-              },
-            ),
+              // Dropdown to select sub-breed
+              DropdownButton<String>(
+                value: viewModelProvider.selectedSubBreed,
+                hint:  const LuckiestGuyFont(text: 'Select Sub-Breed', fontSize: 15.0),
+                items: viewModelProvider.selectedBreed != null &&
+                        viewModelProvider.breedsList
+                            .firstWhere((breed) =>
+                                breed.breed == viewModelProvider.selectedBreed)
+                            .subBreeds
+                            .isNotEmpty
+                    ? viewModelProvider.breedsList
+                        .firstWhere((breed) =>
+                            breed.breed == viewModelProvider.selectedBreed)
+                        .subBreeds
+                        .map((subBreed) {
+                        return DropdownMenuItem<String>(
+                          value: subBreed,
+                          child: LuckiestGuyFont(text: subBreed, fontSize: 15.0)
+                        );
+                      }).toList()
+                    : [
+                     const   DropdownMenuItem<String>(
+                          value: null,
+                          child: LuckiestGuyFont(text: 'No Sub-Breed', fontSize: 15.0),
+                        ),
+                      ],
+                onChanged: viewModelProvider.selectedBreed != null &&
+                        viewModelProvider.breedsList
+                            .firstWhere((breed) =>
+                                breed.breed == viewModelProvider.selectedBreed)
+                            .subBreeds
+                            .isNotEmpty
+                    ? (value) {
+                        if (value != null) {
+                          viewModelProvider.setSelectedSubBreed(value);
+                          viewModelProvider.fetchRandomImageByBreedAndSubBreed(
+                              viewModelProvider.selectedBreed!, value);
+                        }
+                      }
+                    : null,
+              ),
+            ],
+          ),
           // Display random image
           if (viewModelProvider.randomImageUrl != null)
-            Image.network(viewModelProvider.randomImageUrl!),
+            ImageWidget(url: viewModelProvider.randomImageUrl!),
         ],
       ),
     );

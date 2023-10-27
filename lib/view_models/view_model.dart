@@ -21,6 +21,7 @@ class ViewModel extends ChangeNotifier {
   void clearSelectedBreedData() {
     selectedBreed = null;
     selectedSubBreed=null;
+    randomImageUrl=null;
     breedImages.clear();
     notifyListeners();
   }
@@ -31,13 +32,15 @@ class ViewModel extends ChangeNotifier {
     final response = await Dio().get('https://dog.ceo/api/breeds/list/all');
     final data = response.data['message'];
     breedsList.clear();
-    data.forEach((name, subBreeds) {
-      breedsList.add(
-          BreedsListModel(breed: name, subBreeds: List<String>.from(subBreeds)));
+    data.forEach((breed, subBreeds) {
+      breedsList.add(BreedsListModel.fromJson(breed, subBreeds));
+ //     logger.d('Breed: $breed, Sub-Breeds: $subBreeds');
     });
     notifyListeners();
-    logger.d(breedsList[5].subBreeds);
+
+
   }
+
 
 // Random Image by Breed Screen
 
