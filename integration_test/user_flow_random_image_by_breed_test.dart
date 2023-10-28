@@ -8,24 +8,22 @@ void main() {
 
   group('User Flow Tests', () {
     testWidgets('Fetch and display random dog image by breed', (WidgetTester tester) async {
-      app.main(); // Start the app
-      await tester.pumpAndSettle(); // Wait for the app to settle
+      app.main();
+      await tester.pumpAndSettle();
 
       // Find and tap the button to navigate to the "Random Image by Breed" page
-      // Replace with the actual button's finder
       final Finder randomImageButton = find.byKey(const ValueKey('RANDOM IMAGE BY BREED'));
       await tester.tap(randomImageButton);
-      await tester.pumpAndSettle(); // Wait for animations and screen transitions
+      await tester.pumpAndSettle();
 
 
 
       // Interact with the dropdown to select a breed
-      // Replace with the actual dropdown's finder
+
       final Finder breedDropdown = find.byKey(const ValueKey('breedDropdown'));
       await tester.tap(breedDropdown);
       await tester.pumpAndSettle();
 
-      // Select a breed from the dropdown (example: the first breed)
 
       await tester.tap(find.byKey(const ValueKey('breedItem')).first);
       await tester.pumpAndSettle(); // Wait  to load

@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Test & Build & Update Android & Web
+    name: Test & Build & Upload Artifact Android & Web
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
         with:
           api-level: 33
           arch: x86_64
-          profile: Pixel 3a XL
+          system-image: system-images;android-33;google_apis;x86_64
           script: flutter test integration_test
 
       - name: Build APK
