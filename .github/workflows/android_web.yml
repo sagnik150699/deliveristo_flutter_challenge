@@ -28,16 +28,15 @@ jobs:
       - name: Set up Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33
+          api-level: 29  # Lower API level
           arch: x86_64
           profile: pixel_3a
-#          system-image: system-images;android-33;google_apis;x86_64
-          emulator-options: -no-audio -no-boot-anim -accel off
-#          script: flutter test integration_test
-        emulator-boot-timeout: 600 # Increase boot timeout to 10 minutes
-        script: |
-          flutter devices
-          flutter test integration_test
+          emulator-options: -no-audio -no-boot-anim  # Removed -accel off
+          emulator-boot-timeout: 900  # Increased boot timeout to 15 minutes
+          script: |
+            flutter devices
+            flutter test integration_test  # Uncommented this line
+  
 
       - name: Run Flutter Unit and Widget Tests
         run: flutter test
