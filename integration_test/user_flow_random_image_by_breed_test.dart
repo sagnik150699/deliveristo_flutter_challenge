@@ -7,16 +7,16 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('User Flow Tests Random image by breed', () {
-    testWidgets('Fetch and display random dog image by breed', (WidgetTester tester) async {
+    testWidgets('Fetch and display random dog image by breed',
+        (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
 
       // Find and tap the button to navigate to the "Random Image by Breed" page
-      final Finder randomImageButton = find.byKey(const ValueKey('RANDOM IMAGE BY BREED'));
+      final Finder randomImageButton =
+          find.byKey(const ValueKey('RANDOM IMAGE BY BREED'));
       await tester.tap(randomImageButton);
       await tester.pumpAndSettle();
-
-
 
       // Interact with the dropdown to select a breed
 

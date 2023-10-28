@@ -31,6 +31,7 @@ class RandomImageBreedSubreed extends ConsumerWidget {
             children: [
               // Dropdown to select breed
               DropdownButton<String>(
+                key: const ValueKey('breedDropdown'),
                 value: viewModelProvider.selectedBreed,
                 hint:
                     const LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
@@ -53,6 +54,7 @@ class RandomImageBreedSubreed extends ConsumerWidget {
 
               // Dropdown to select sub-breed
               DropdownButton<String>(
+                key: const ValueKey('breedItem'),
                 value: viewModelProvider.selectedSubBreed,
                 hint: const LuckiestGuyFont(
                     text: 'Select Sub-Breed', fontSize: 15.0),
@@ -96,7 +98,10 @@ class RandomImageBreedSubreed extends ConsumerWidget {
           const SizedBox(height: 20.0),
           // Display random image
           if (viewModelProvider.randomImageUrl != null)
-            ImageWidget(url: viewModelProvider.randomImageUrl!),
+            ImageWidget(
+              url: viewModelProvider.randomImageUrl!,
+              key: const ValueKey('dogImage'),
+            ),
         ],
       ),
     );
