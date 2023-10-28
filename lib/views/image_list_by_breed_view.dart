@@ -30,10 +30,12 @@ class ImageListByBreedView extends ConsumerWidget {
           const SizedBox(height: 30.0),
           // Dropdown to select breed
           DropdownButton<String>(
+            key: const ValueKey('breedDropdown'),
             value: viewModelProvider.selectedBreed,
             hint: const LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
             items: viewModelProvider.breedsList.map((breed) {
               return DropdownMenuItem<String>(
+                key: const ValueKey('breedItem'),
                 value: breed.breed,
                 child: LuckiestGuyFont(text: breed.breed, fontSize: 15.0),
               );

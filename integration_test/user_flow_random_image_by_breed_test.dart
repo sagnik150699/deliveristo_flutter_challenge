@@ -6,7 +6,7 @@ import 'package:deliveristo_flutter_challenge/main.dart' as app;
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group('User Flow Tests', () {
+  group('User Flow Tests Random image by breed', () {
     testWidgets('Fetch and display random dog image by breed', (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
@@ -24,7 +24,7 @@ void main() {
       await tester.tap(breedDropdown);
       await tester.pumpAndSettle();
 
-
+// Select breedItem
       await tester.tap(find.byKey(const ValueKey('breedItem')).first);
       await tester.pumpAndSettle(); // Wait  to load
       await tester.pumpAndSettle(const Duration(seconds: 5));
