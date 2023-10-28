@@ -25,17 +25,22 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run Flutter Unit and Widget Tests
-        run: flutter test
-
       - name: Set up Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 33
           arch: x86_64
-          system-image: system-images;android-33;google_apis;x86_64
+          profile: pixel_3a
+#          system-image: system-images;android-33;google_apis;x86_64
           emulator-options: -no-audio -no-boot-anim -accel off
-          script: flutter test integration_test
+#          script: flutter test integration_test
+        emulator-boot-timeout: 600 # Increase boot timeout to 10 minutes
+        script: |
+          flutter devices
+          flutter test integration_test
+
+      - name: Run Flutter Unit and Widget Tests
+        run: flutter test
 
       - name: Build APK
         run: flutter build apk
@@ -50,6 +55,7 @@ jobs:
           path: |
             build/app/outputs/flutter-apk/app-release.apk
             build/app/outputs/bundle/release/app-release.aab
+
 
       - name: Build WEB
         run: flutter build web --release
