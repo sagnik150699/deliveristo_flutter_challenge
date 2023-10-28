@@ -31,7 +31,7 @@ jobs:
           api-level: 33
           arch: x86_64
           profile: Nexus 6
-          emulator-boot-timeout: 300
+      #    emulator-boot-timeout: 300
           script: |
             flutter devices
             flutter test integration_test 
