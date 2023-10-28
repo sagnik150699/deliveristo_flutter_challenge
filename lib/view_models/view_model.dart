@@ -9,7 +9,7 @@ final viewModel =
 Logger logger = Logger();
 
 class ViewModel extends ChangeNotifier {
-  final dio = Dio();
+  var dio = Dio();
 
   List<BreedsListModel> breedsList = [];
   String? randomImageUrl;

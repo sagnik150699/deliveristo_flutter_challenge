@@ -54,7 +54,6 @@ class RandomImageByBreed extends ConsumerWidget {
                 child: ImageWidget(
                   key: const ValueKey('dogImage'),
                   url: viewModelProvider.randomImageUrl!,
-
                 ),
               ),
           ],
