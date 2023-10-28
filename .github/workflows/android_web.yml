@@ -1,4 +1,4 @@
-name: Flutter CI/CD
+name: Flutter CI/CD Android & Web
 
 on:
   push:
@@ -31,7 +31,9 @@ jobs:
       - name: Set up Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 34
+          api-level: 33
+          arch: x86_64
+          profile: Pixel 3a XL
           script: flutter test integration_test
 
       - name: Build APK
@@ -57,29 +59,3 @@ jobs:
           name: web-app
           path: build/web/
 
-  build_windows:
-    name: Build Windows
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Install Flutter
-        run: |
-          git clone https://github.com/flutter/flutter.git --depth 1 -b stable _flutter
-
-      - name: Flutter Config
-        run: ${{ github.workspace }}\_flutter\bin\flutter.bat config --enable-windows-desktop
-
-      - name: Install Dependencies
-        run: ${{ github.workspace }}\_flutter\bin\flutter.bat pub get
-
-      - name: Build Windows Executable
-        run: ${{ github.workspace }}\_flutter\bin\flutter.bat build windows
-
-      - name: Upload Windows Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: windows-app
-          path: build/windows/runner/Release/
