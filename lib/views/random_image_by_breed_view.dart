@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,10 +29,12 @@ class RandomImageByBreed extends ConsumerWidget {
           children: [
             const SizedBox(height: 30.0),
             DropdownButton<String>(
+              key: const ValueKey('breedDropdown'),
               value: viewModelProvider.selectedBreed,
-              hint: LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
+              hint: const LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
               items: viewModelProvider.breedsList.map((breed) {
                 return DropdownMenuItem<String>(
+                  key: const ValueKey('breedItem'),
                   value: breed.breed,
                   child: LuckiestGuyFont(text: breed.breed, fontSize: 15.0),
                 );
@@ -49,8 +50,12 @@ class RandomImageByBreed extends ConsumerWidget {
             // Display random image
             if (viewModelProvider.randomImageUrl != null)
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.0),
-                child: ImageWidget(url: viewModelProvider.randomImageUrl!),
+                padding: const EdgeInsets.symmetric(vertical: 15.0),
+                child: ImageWidget(
+                  key: const ValueKey('dogImage'),
+                  url: viewModelProvider.randomImageUrl!,
+
+                ),
               ),
           ],
         ),

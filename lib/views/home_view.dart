@@ -32,6 +32,7 @@ class HomeView extends ConsumerWidget {
               LuckiestGuyFont(text: "Home", fontSize: 80.0),
               SizedBox(height: 70.0),
               HomeButtonNavigation(
+                key: ValueKey("RANDOM IMAGE BY BREED"),
                 buttonText: "RANDOM IMAGE BY BREED",
                 navigator: RandomImageByBreed(),
               ),
