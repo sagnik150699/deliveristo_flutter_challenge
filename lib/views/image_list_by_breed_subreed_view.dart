@@ -31,11 +31,14 @@ class ImagesListByBreedAndSubBreed extends ConsumerWidget {
             children: [
               // Dropdown to select breed
               DropdownButton<String>(
+                key: const ValueKey('breedDropdown'),
                 value: viewModelProvider.selectedBreed,
                 hint:
                     const LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
                 items: viewModelProvider.breedsList.map((breed) {
                   return DropdownMenuItem<String>(
+
+                    key: const ValueKey('breedItem'),
                     value: breed.breed,
                     child: LuckiestGuyFont(text: breed.breed, fontSize: 15.0),
                   );
@@ -53,6 +56,7 @@ class ImagesListByBreedAndSubBreed extends ConsumerWidget {
 
               // Dropdown to select sub-breed
               DropdownButton<String>(
+                key: const ValueKey('subBreedDropdown'),
                 value: viewModelProvider.selectedSubBreed,
                 hint: const LuckiestGuyFont(
                     text: 'Select Sub-Breed', fontSize: 15.0),
@@ -63,6 +67,7 @@ class ImagesListByBreedAndSubBreed extends ConsumerWidget {
                         .subBreeds
                         .map((subBreed) {
                         return DropdownMenuItem<String>(
+                          key: const ValueKey('subBreedItem'),
                           value: subBreed,
                           child:
                               LuckiestGuyFont(text: subBreed, fontSize: 15.0),
@@ -70,6 +75,7 @@ class ImagesListByBreedAndSubBreed extends ConsumerWidget {
                       }).toList()
                     : [
                         DropdownMenuItem<String>(
+                          key: const ValueKey('subBreedItem'),
                           value: 'No Sub-Breeds',
                           child: LuckiestGuyFont(
                               text: 'No Sub-Breeds', fontSize: 15.0),
