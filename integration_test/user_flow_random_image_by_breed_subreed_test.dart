@@ -17,24 +17,27 @@ void main() {
     await tester.pumpAndSettle();
 
     // Select a breed
-    final breedDropdown = find.byKey(const ValueKey('breedDropdown'));
+    final Finder breedDropdown = find.byKey(const ValueKey('breedDropdown'));
     await tester.tap(breedDropdown);
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const ValueKey('breedItem')).first);
+    await tester.pumpAndSettle();
     await tester.pumpAndSettle(const Duration(seconds: 5));
 
-    final breedOption = find.byKey(const ValueKey('breedItem')).first;
-    await tester.tap(breedOption);
-    await tester.pumpAndSettle(const Duration(seconds: 5));
-
-    // Check if sub-breed dropdown is present
+    // Check if sub-breed dropdown is present and has options
     final subBreedDropdown = find.byKey(const ValueKey('subBreedDropdown'));
     if (tester.any(subBreedDropdown)) {
-      // If sub-breed dropdown is present, interact with it
       await tester.tap(subBreedDropdown);
       await tester.pumpAndSettle(const Duration(seconds: 5));
 
-      final subBreedOption = find.byKey(const ValueKey('subBreedItem')).first;
-      await tester.tap(subBreedOption);
-      await tester.pumpAndSettle(const Duration(seconds: 5));
+      // Check if there are sub-breed options available
+      final subBreedOptions = find.byKey(const ValueKey('subBreedItem'));
+      if (tester.any(subBreedOptions)) {
+        // If sub-breed options are available, select the first one
+        await tester.tap(subBreedOptions.first);
+        await tester.pumpAndSettle(const Duration(seconds: 5));
+      }
     }
 
     // Verify that an image is displayed

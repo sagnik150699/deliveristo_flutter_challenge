@@ -65,6 +65,7 @@ class RandomImageBreedSubreed extends ConsumerWidget {
                         .subBreeds
                         .map((subBreed) {
                         return DropdownMenuItem<String>(
+                          key: const ValueKey('subBreedItem'),
                           value: subBreed,
                           child:
                               LuckiestGuyFont(text: subBreed, fontSize: 15.0),
@@ -72,6 +73,7 @@ class RandomImageBreedSubreed extends ConsumerWidget {
                       }).toList()
                     : [
                         DropdownMenuItem<String>(
+                          key: const ValueKey('subBreedItem'),
                           value: 'No Sub-Breeds',
                           child: LuckiestGuyFont(
                               text: 'No Sub-Breeds', fontSize: 15.0),
