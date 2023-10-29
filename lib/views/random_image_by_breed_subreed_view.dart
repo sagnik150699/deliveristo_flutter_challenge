@@ -37,6 +37,7 @@ class RandomImageBreedSubreed extends ConsumerWidget {
                     const LuckiestGuyFont(text: 'Select Breed', fontSize: 15.0),
                 items: viewModelProvider.breedsList.map((breed) {
                   return DropdownMenuItem<String>(
+                    key: const ValueKey('breedItem'),
                     value: breed.breed,
                     child: LuckiestGuyFont(text: breed.breed, fontSize: 15.0),
                   );
@@ -54,7 +55,7 @@ class RandomImageBreedSubreed extends ConsumerWidget {
 
               // Dropdown to select sub-breed
               DropdownButton<String>(
-                key: const ValueKey('breedItem'),
+                key: const ValueKey('subBreedDropdown'),
                 value: viewModelProvider.selectedSubBreed,
                 hint: const LuckiestGuyFont(
                     text: 'Select Sub-Breed', fontSize: 15.0),
