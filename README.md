@@ -39,7 +39,7 @@ The codebase adheres to best practices in Flutter development, ensuring readabil
 
 ## Testing
 
-The project includes unit tests and integration tests to ensure the reliability and performance of the application. Tests cover critical functionalities and components.
+The project includes unit tests and integration tests to ensure the reliability and performance of the application. Tests cover critical functionalities, end-to-end user flow and components.
 
 ## CI/CD
 
