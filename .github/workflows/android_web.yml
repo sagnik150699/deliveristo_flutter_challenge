@@ -32,9 +32,17 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           emulator-options: "-no-window -gpu swiftshader -no-snapshot -no-audio -no-boot-anim"
+          emulator-boot-timeout: 600
           script: |
+            for i in {1..5}; do
+              adb devices
+              adb shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done' && break
+              echo "Retrying adb connection ($i)"
+              sleep 15
+            done
             flutter devices
             flutter test
+
 
       - name: Run Flutter Unit and Widget Tests
         run: flutter test
