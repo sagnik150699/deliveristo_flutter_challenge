@@ -17,7 +17,6 @@ jobs:
         with:
           java-version: '17.x'
 
-
       - name: Install Flutter
         uses: subosito/flutter-action@v1
         with:
@@ -32,9 +31,10 @@ jobs:
           api-level: 33
           arch: x86_64
           profile: Nexus 6
-
-          emulator-boot-timeout: 300
-          script: flutter test
+          emulator-options: "-no-window -gpu swiftshader -no-snapshot -no-audio -no-boot-anim"
+          script: |
+            flutter devices
+            flutter test
 
       - name: Run Flutter Unit and Widget Tests
         run: flutter test
@@ -53,7 +53,6 @@ jobs:
             build/app/outputs/flutter-apk/app-release.apk
             build/app/outputs/bundle/release/app-release.aab
 
-
       - name: Build WEB
         run: flutter build web --release
 
@@ -62,4 +61,3 @@ jobs:
         with:
           name: web-app
           path: build/web/
-
