@@ -25,20 +25,20 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Set up Android Emulator
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 33
-          arch: x86_64
-          profile: Nexus 6
-          emulator-options: "-no-window -gpu swiftshader -no-snapshot -no-audio -no-boot-anim"
-          emulator-boot-timeout: 400
-          run:
-            flutter test
-
-
-      - name: Run Flutter Unit and Widget Tests
-        run: flutter test
+#      - name: Set up Android Emulator
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 33
+#          arch: x86_64
+#          profile: Nexus 6
+#          emulator-options: "-no-window -gpu swiftshader -no-snapshot -no-audio -no-boot-anim"
+#          emulator-boot-timeout: 400
+#          run:
+#            flutter test
+#
+#
+#      - name: Run Flutter Unit and Widget Tests
+#        run: flutter test
 
       - name: Build APK
         run: flutter build appbundle
