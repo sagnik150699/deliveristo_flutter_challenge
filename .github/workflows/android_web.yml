@@ -81,13 +81,6 @@ jobs:
       - name: Upgrade pub packages
         run: flutter pub upgrade
 
-      # Clean the Flutter build cache to avoid conflicts
-      - name: Clean Flutter build cache
-        run: flutter clean
-
-      # Install CocoaPods dependencies (required for iOS builds)
-      - name: Install CocoaPods dependencies
-        run: pod install --project-directory=ios
 
       # Build the iOS app without code signing
       - name: Build iOS app
