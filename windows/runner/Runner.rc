@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "deliveristo_flutter_challenge" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "deliveristo_flutter_challenge" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.codingliquids. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 com.codingliquids. All rights reserved." "\0"
             VALUE "OriginalFilename", "deliveristo_flutter_challenge.exe" "\0"
             VALUE "ProductName", "deliveristo_flutter_challenge" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

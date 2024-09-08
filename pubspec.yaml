@@ -31,7 +31,7 @@ dev_dependencies:
   mockito:
   build_runner:
   network_image_mock:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 
 
 flutter:
