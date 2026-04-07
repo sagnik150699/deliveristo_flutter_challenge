@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sagnik150699/Sagnik-Bhattacharya/master/public/sagnik-bhattacharya.png" alt="Sagnik Bhattacharya" width="180">
+</p>
+**Sagnik Bhattacharya**
+Website: [sagnikbhattacharya.com](https://sagnikbhattacharya.com)
+
 # deliveristo_flutter_challenge
 
 This Flutter project provides a dashboard for displaying images of dogs. It allows users to view random images of dogs by breed and sub-breed, as well as a list of images by breed and sub-breed.
