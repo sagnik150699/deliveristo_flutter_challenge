@@ -19,8 +19,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio:
   flutter_riverpod:
-  google_fonts:
-  riverpod:
+  google_fonts: ^8.0.2
   flutter_spinkit: ^5.2.0
   logger:
 dev_dependencies:
