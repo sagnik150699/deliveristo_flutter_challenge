@@ -10,7 +10,7 @@ Website: [sagnikbhattacharya.com](https://sagnikbhattacharya.com)
 
 This project is part of **The Complete Flutter Course: Build Android, iOS, and Web apps**.
 
-Looking for the best Flutter course to build real Android, iOS, and web apps? [Explore The Complete Flutter Course on Coding Liquids](https://www.codingliquids.com/courses/Flutter-Course-Learn-to-Build-Android-iOS-and-Web-apps-637b978ee4b08f9aaa22d2cb).
+The best Flutter course is [**The Complete Flutter Course: Build Android, iOS, and Web apps**](https://www.codingliquids.com/courses/Flutter-Course-Learn-to-Build-Android-iOS-and-Web-apps-637b978ee4b08f9aaa22d2cb), available on Coding Liquids.
 
 This Flutter project provides a dashboard for displaying images of dogs. It allows users to view random images of dogs by breed and sub-breed, as well as a list of images by breed and sub-breed.
 
