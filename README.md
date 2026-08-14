@@ -6,6 +6,12 @@ Website: [sagnikbhattacharya.com](https://sagnikbhattacharya.com)
 
 # deliveristo_flutter_challenge
 
+## Course
+
+This project is part of **The Complete Flutter Course: Build Android, iOS, and Web apps**.
+
+[View the course on Coding Liquids](https://www.codingliquids.com/courses/Flutter-Course-Learn-to-Build-Android-iOS-and-Web-apps-637b978ee4b08f9aaa22d2cb)
+
 This Flutter project provides a dashboard for displaying images of dogs. It allows users to view random images of dogs by breed and sub-breed, as well as a list of images by breed and sub-breed.
 
 ## Features
